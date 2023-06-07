@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block body %}
+<form action="" method="get">
+
+<div class="row m-2" >
+    <div class="col-md-3">
+    <input name='page' type="text">
+</div>
+<div class="col-md-2">
+    <button  type="submit"  class="btn btn-outline-success" >Enter Site</button>
+</div>
+</form>
+
+<div class="col-md-1">
+    <a   class="btn btn-outline-primary" href='/clear'>Delete</a>
+</div>
+</div>
+
+{% if page %}
+Name of the site - {{page}}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+      </tr>
+    </thead>
+    <tbody>
+{% for link in data %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{link.name}}</td>
+        <td>{{link.address}}</td>
+      </tr>
+     
+   
+
+  {% endfor %}
+</tbody>
+</table>
+  {% endif %}
+
+  {% if messages %}
+  {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">  <!-- singular -->
+          {{ message }}
+      </div>
+  {% endfor %}
+{% endif %}
+
+{% endblock %}
